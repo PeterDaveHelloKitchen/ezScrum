@@ -13,17 +13,13 @@ public class ResponseFactory {
 		JSONObject responseJSON = new JSONObject();
 		try {
 			if (message == null) {
-				responseJSON.put(ResponseJSONEnum.JSON_KEY_MESSAGE, "");
-			} else {
-				responseJSON.put(ResponseJSONEnum.JSON_KEY_MESSAGE, message);
+				message = "";
 			}
-			JSONObject contentJSON;
-			if (content == null || content.isEmpty()) {
-				contentJSON = new JSONObject();
-			} else {
-				contentJSON = new JSONObject(content);
+			responseJSON.put(ResponseJSONEnum.JSON_KEY_MESSAGE, message);
+			if (content == null) {
+				content = "";
 			}
-			responseJSON.put(ResponseJSONEnum.JSON_KEY_CONTENT, contentJSON);
+			responseJSON.put(ResponseJSONEnum.JSON_KEY_CONTENT, content);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

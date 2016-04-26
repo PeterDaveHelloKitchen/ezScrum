@@ -11,4 +11,7 @@ public class ResponseJSONEnum {
 	public static final String ERROR_NOT_FOUND_MESSAGE = "fail due to resource not found";
 	public static final String ERROR_RESOURCE_EXIST_MESSAGE = "fail duo to existing resource";
 	public static final String ERROR_FORBIDDEN_MESSAGE = "fail duo to forbidden";
+	
+	// Content
+	public static final String NO_CONTENT = "";
 }
