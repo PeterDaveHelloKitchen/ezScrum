@@ -1,0 +1,57 @@
+*** Settings ***
+Resource          keywords/Plugin/ezScrum_Plugin.txt
+
+*** Test Cases ***
+Test Exportation Plugin - Story Count Chart
+    [Setup]    Test Exportation Plugin - Story Count Chart Setup
+    # Access Project01
+    Click Element    xpath=//div[text()="Project01"]
+    # Switch to story count chart page
+    ${nodeName}=    Set Variable    StoryCount Chart
+    Wait Until Element Is Visible    xpath=//span/u[text()="${nodeName}"]
+    Click Element    xpath=//span/u[text()="${nodeName}"]
+    # Assert existing release
+    Wait Until Page Contains    Release01
+    [Teardown]    Test Exportation Plugin - Story Count Chart Teardown
+
+Test Exportation Plugin - Velocity Chart
+    [Setup]    Test Exportation Plugin - Velocity Chart Setup
+    # Access Project01
+    Click Element    xpath=//div[text()="Project01"]
+    # Switch to story count chart page
+    ${nodeName}=    Set Variable    Velocity Chart
+    Wait Until Element Is Visible    xpath=//span/u[text()="${nodeName}"]
+    Click Element    xpath=//span/u[text()="${nodeName}"]
+    # Assert existing release
+    Wait Until Page Contains    Release01
+    [Teardown]    Test Exportation Plugin - Velocity Chart Teardown
+
+Test Exportation Plugin - Story Count Chart Permission Denied
+    [Setup]    Test Exportation Plugin - Story Count Chart Permission Denied Setup
+    # Access Project01
+    Click Element    xpath=//div[text()="Project01"]
+    # Verify error message
+    Wait Until Page Contains    Exportation Plugin Error
+    Wait Until Page Contains    fail due to permission denied
+    # Switch to story count chart page
+    ${nodeName}=    Set Variable    StoryCount Chart
+    Wait Until Element Is Visible    xpath=//span/u[text()="${nodeName}"]
+    Click Element    xpath=//span/u[text()="${nodeName}"]
+    # Assert existing release not display
+    Wait Until Page Does Not Contain    Release01
+    [Teardown]    Test Exportation Plugin - Story Count Chart Permission Denied Teardown
+
+Test Exportation Plugin - Velocity Chart Permission Denied
+    [Setup]    Test Exportation Plugin - Velocity Chart Permission Denied Setup
+    # Access Project01
+    Click Element    xpath=//div[text()="Project01"]
+    # Verify error message
+    Wait Until Page Contains    Exportation Plugin Error
+    Wait Until Page Contains    fail due to permission denied
+    # Switch to story count chart page
+    ${nodeName}=    Set Variable    Velocity Chart
+    Wait Until Element Is Visible    xpath=//span/u[text()="${nodeName}"]
+    Click Element    xpath=//span/u[text()="${nodeName}"]
+    # Assert existing release not display
+    Wait Until Page Does Not Contain    Release01
+    [Teardown]    Test Exportation Plugin - Velocity Chart Permission Denied Teardown

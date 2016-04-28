@@ -1,0 +1,144 @@
+*** Settings ***
+Library           ../lib/DatabaseHandler.py
+Resource          ../ezScrum_Login.txt
+
+*** Keywords ***
+Test Exportation Plugin - Story Count Chart Setup
+    ${SQLFilePath}=    Catenate    SEPARATOR=\\    ${EXECDIR}    TestData    Plugin    StoryCountChart.sql
+    Load Database    ${DB_URL}    ${DB_NAME}    ${DB_ACCOUNT}    ${DB_PASSWORD}    ${SQLFilePath}
+    Login Page    ${LOGIN_URL}
+    # Access Management Page
+    Click Element    xpath=//td[text()="Management"]
+    # Switch to Plugin Management
+    Click Element    xpath=//u[text()="Plugin Management"]
+    # Click Add Plugin
+    Click Element    xpath=//button[text()="Add Plugin"]
+    # Generate the Exportation Plugin file path
+    ${PLUGIN_PATH}=    Catenate    SEPARATOR=\\    ${EXECDIR}    TestData    Plugin    Normal_Exportation_Plugin
+    ...    ExportationPlugin.war
+    # Confirm to add plugin
+    Choose File    //input[@name="file"]    ${PLUGIN_PATH}
+    Click Element    xpath=//button[text()="Submit"]
+    Wait Until Page Contains    Success.
+    # Back to project list
+    Click Element    xpath=//td[text()="ProjectList"]
+
+Test Exportation Plugin - Story Count Chart Teardown
+    # Access Management Page
+    Click Element    xpath=//td[text()="Management"]
+    # Switch to Plugin Management
+    Click Element    xpath=//u[text()="Plugin Management"]
+    # Choose Exportation Plugin
+    Click Element    //div[text()='ExportationPlugin']
+    # Click Remove Plugin
+    Click Element    //button[text()='Remove Plugin']
+    Click Element    xpath=//button[text()="Yes"]
+    # Close browser
+    Close Browser
+    # clean DB
+    Clean DB    ${DB_URL}    ${DB_ACCOUNT}    ${DB_PASSWORD}    ${DB_NAME}
+
+Test Exportation Plugin - Velocity Chart Setup
+    ${SQLFilePath}=    Catenate    SEPARATOR=\\    ${EXECDIR}    TestData    Plugin    VelocityChart.sql
+    Load Database    ${DB_URL}    ${DB_NAME}    ${DB_ACCOUNT}    ${DB_PASSWORD}    ${SQLFilePath}
+    Login Page    ${LOGIN_URL}
+    # Access Management Page
+    Click Element    xpath=//td[text()="Management"]
+    # Switch to Plugin Management
+    Click Element    xpath=//u[text()="Plugin Management"]
+    # Click Add Plugin
+    Click Element    xpath=//button[text()="Add Plugin"]
+    # Generate the Exportation Plugin file path
+    ${PLUGIN_PATH}=    Catenate    SEPARATOR=\\    ${EXECDIR}    TestData    Plugin    Normal_Exportation_Plugin
+    ...    ExportationPlugin.war
+    # Confirm to add plugin
+    Choose File    //input[@name="file"]    ${PLUGIN_PATH}
+    Click Element    xpath=//button[text()="Submit"]
+    Wait Until Page Contains    Success.
+    # Back to project list
+    Click Element    xpath=//td[text()="ProjectList"]
+
+Test Exportation Plugin - Velocity Chart Teardown
+    # Access Management Page
+    Click Element    xpath=//td[text()="Management"]
+    # Switch to Plugin Management
+    Click Element    xpath=//u[text()="Plugin Management"]
+    # Choose Exportation Plugin
+    Click Element    //div[text()='ExportationPlugin']
+    # Click Remove Plugin
+    Click Element    //button[text()='Remove Plugin']
+    Click Element    xpath=//button[text()="Yes"]
+    # Close browser
+    Close Browser
+    # clean DB
+    Clean DB    ${DB_URL}    ${DB_ACCOUNT}    ${DB_PASSWORD}    ${DB_NAME}
+
+Test Exportation Plugin - Story Count Chart Permission Denied Setup
+    ${SQLFilePath}=    Catenate    SEPARATOR=\\    ${EXECDIR}    TestData    Plugin    StoryCountChart.sql
+    Load Database    ${DB_URL}    ${DB_NAME}    ${DB_ACCOUNT}    ${DB_PASSWORD}    ${SQLFilePath}
+    Login Page    ${LOGIN_URL}
+    # Access Management Page
+    Click Element    xpath=//td[text()="Management"]
+    # Switch to Plugin Management
+    Click Element    xpath=//u[text()="Plugin Management"]
+    # Click Add Plugin
+    Click Element    xpath=//button[text()="Add Plugin"]
+    # Generate the Exportation Plugin file path
+    ${PLUGIN_PATH}=    Catenate    SEPARATOR=\\    ${EXECDIR}    TestData    Plugin    Permission_Denied_Exportation_Plugin
+    ...    ExportationPlugin.war
+    # Confirm to add plugin
+    Choose File    //input[@name="file"]    ${PLUGIN_PATH}
+    Click Element    xpath=//button[text()="Submit"]
+    Wait Until Page Contains    Success.
+    # Back to project list
+    Click Element    xpath=//td[text()="ProjectList"]
+
+Test Exportation Plugin - Story Count Chart Permission Denied Teardown
+    # Access Management Page
+    Click Element    xpath=//td[text()="Management"]
+    # Switch to Plugin Management
+    Click Element    xpath=//u[text()="Plugin Management"]
+    # Choose Exportation Plugin
+    Click Element    //div[text()='ExportationPlugin']
+    # Click Remove Plugin
+    Click Element    //button[text()='Remove Plugin']
+    Click Element    xpath=//button[text()="Yes"]
+    # Close browser
+    Close Browser
+    # clean DB
+    Clean DB    ${DB_URL}    ${DB_ACCOUNT}    ${DB_PASSWORD}    ${DB_NAME}
+
+Test Exportation Plugin - Velocity Chart Permission Denied Setup
+    ${SQLFilePath}=    Catenate    SEPARATOR=\\    ${EXECDIR}    TestData    Plugin    VelocityChart.sql
+    Load Database    ${DB_URL}    ${DB_NAME}    ${DB_ACCOUNT}    ${DB_PASSWORD}    ${SQLFilePath}
+    Login Page    ${LOGIN_URL}
+    # Access Management Page
+    Click Element    xpath=//td[text()="Management"]
+    # Switch to Plugin Management
+    Click Element    xpath=//u[text()="Plugin Management"]
+    # Click Add Plugin
+    Click Element    xpath=//button[text()="Add Plugin"]
+    # Generate the Exportation Plugin file path
+    ${PLUGIN_PATH}=    Catenate    SEPARATOR=\\    ${EXECDIR}    TestData    Plugin    Permission_Denied_Exportation_Plugin
+    ...    ExportationPlugin.war
+    # Confirm to add plugin
+    Choose File    //input[@name="file"]    ${PLUGIN_PATH}
+    Click Element    xpath=//button[text()="Submit"]
+    Wait Until Page Contains    Success.
+    # Back to project list
+    Click Element    xpath=//td[text()="ProjectList"]
+
+Test Exportation Plugin - Velocity Chart Permission Denied Teardown
+    # Access Management Page
+    Click Element    xpath=//td[text()="Management"]
+    # Switch to Plugin Management
+    Click Element    xpath=//u[text()="Plugin Management"]
+    # Choose Exportation Plugin
+    Click Element    //div[text()='ExportationPlugin']
+    # Click Remove Plugin
+    Click Element    //button[text()='Remove Plugin']
+    Click Element    xpath=//button[text()="Yes"]
+    # Close browser
+    Close Browser
+    # clean DB
+    Clean DB    ${DB_URL}    ${DB_ACCOUNT}    ${DB_PASSWORD}    ${DB_NAME}

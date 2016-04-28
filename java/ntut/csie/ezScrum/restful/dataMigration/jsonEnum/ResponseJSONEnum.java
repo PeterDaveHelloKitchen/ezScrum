@@ -11,6 +11,7 @@ public class ResponseJSONEnum {
 	public static final String ERROR_NOT_FOUND_MESSAGE = "fail due to resource not found";
 	public static final String ERROR_RESOURCE_EXIST_MESSAGE = "fail due to existing resource";
 	public static final String ERROR_FORBIDDEN_MESSAGE = "fail due to permission denied";
+	public static final String ERROR_INTERNAL_SERVER_ERROR_MESSAGE = "fail due to internal server error";
 	
 	// Content
 	public static final String NO_CONTENT = "";
