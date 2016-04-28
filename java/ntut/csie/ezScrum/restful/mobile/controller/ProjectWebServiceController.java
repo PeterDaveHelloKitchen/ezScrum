@@ -10,11 +10,11 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.codehaus.jettison.json.JSONException;
+
 import ntut.csie.ezScrum.restful.mobile.service.ProjectWebService;
 import ntut.csie.ezScrum.restful.mobile.support.InformationDecoder;
 import ntut.csie.jcis.account.core.LogonException;
-
-import org.codehaus.jettison.json.JSONException;
 
 @Path("/")
 public class ProjectWebServiceController {
@@ -92,10 +92,6 @@ public class ProjectWebServiceController {
 			System.out.println("class: ProjectWebServiceController, "
 					+ "method: getRESTFulResponseString, " + "exception: "
 					+ e.toString());
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("class: ProjectWebServiceController, "
-					+ "method: decode, " + "exception: " + e.toString());
 			e.printStackTrace();
 		}
 		return jsonString;

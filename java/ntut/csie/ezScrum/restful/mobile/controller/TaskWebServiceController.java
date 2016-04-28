@@ -13,11 +13,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONException;
+
 import ntut.csie.ezScrum.restful.mobile.service.TaskWebService;
 import ntut.csie.ezScrum.restful.mobile.support.InformationDecoder;
 import ntut.csie.jcis.account.core.LogonException;
-
-import org.codehaus.jettison.json.JSONException;
 
 @Path("{projectName}/task/")
 public class TaskWebServiceController {
@@ -44,10 +44,6 @@ public class TaskWebServiceController {
 			mTaskWebService = new TaskWebService(decoder.getDecodeUsername(),
 					decoder.getDecodePwd(), decoder.getDecodeProjectName());
 			result = mTaskWebService.updateTask(taskJson);
-		} catch (IOException e) {
-			System.out.println("class: TaskWebServiceController, "
-					+ "method: updateTask, " + "exception: " + e.toString());
-			e.printStackTrace();
 		} catch (LogonException e) {
 			System.out.println("class: TaskWebServiceController, "
 					+ "method: updateTask, " + "exception: " + e.toString());

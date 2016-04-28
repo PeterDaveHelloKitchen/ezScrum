@@ -11,11 +11,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONException;
+
 import ntut.csie.ezScrum.restful.mobile.service.StoryWebService;
 import ntut.csie.ezScrum.restful.mobile.support.InformationDecoder;
 import ntut.csie.jcis.account.core.LogonException;
-
-import org.codehaus.jettison.json.JSONException;
 
 @Path("{projectName}/story/")
 public class StoryWebServiceController {
@@ -51,12 +51,6 @@ public class StoryWebServiceController {
 			System.out.println("class: StoryWebServiceController, "
 					+ "method: createStory, " + "exception: " + e.toString());
 			e.printStackTrace();
-		} catch (IOException e) {
-			responseString += "IOException";
-			e.printStackTrace();
-			System.out.println("class: StoryWebServiceController, "
-					+ "method: createStory, " + "api:InformationDecoder, "
-					+ "exception: " + e.toString());
 		}
 		return responseString;
 	}
@@ -85,12 +79,6 @@ public class StoryWebServiceController {
 			storyAfterEdit += "LogonException";
 			System.out.println("class: ProductBacklogWebServiceController, "
 					+ "method: updateStory, " + "exception: " + e.toString());
-			e.printStackTrace();
-		} catch (IOException e) {
-			storyAfterEdit += "IOException";
-			System.out.println("class: ProductBacklogWebServiceController, "
-					+ "method: updateStory, " + "api:InformationDecoder, "
-					+ "exception: " + e.toString());
 			e.printStackTrace();
 		} catch (JSONException e) {
 			storyAfterEdit += "JSONException";

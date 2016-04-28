@@ -1,7 +1,5 @@
 package ntut.csie.ezScrum.restful.mobile.controller;
 
-import java.io.IOException;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -9,11 +7,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONException;
+
 import ntut.csie.ezScrum.restful.mobile.service.BurndownChartWebService;
 import ntut.csie.ezScrum.restful.mobile.support.InformationDecoder;
 import ntut.csie.jcis.account.core.LogonException;
-
-import org.codehaus.jettison.json.JSONException;
 
 @Path("{projectName}/burndown-chart/")
 public class BurndownChartWebServiceController {
@@ -48,9 +46,6 @@ public class BurndownChartWebServiceController {
 					Integer.parseInt(sprintId));
 			storyPointsJsonString = burndownChartWebService
 					.getRESTFulStoryPointMapResponseString();
-		} catch (IOException e) {
-			System.out.println("class: InformationDecoder, "
-					+ "method: decode, " + "exception: " + e.toString());
 		} catch (LogonException e) {
 			System.out.println("class: BurndownChartWebServiceController, "
 					+ "method: getSprintBacklogList, " + "exception: "
@@ -92,10 +87,6 @@ public class BurndownChartWebServiceController {
 					decoder.getDecodePwd(), decoder.getDecodeProjectName(),
 					Integer.parseInt(sprintId));
 			taskPointsJsonString = burndownChartWebService.getRESTFulTaskPointMapResponseString();
-		} catch (IOException e) {
-			System.out.println("class: InformationDecoder, "
-					+ "method: decode, " + "exception: " + e.toString());
-			e.printStackTrace();
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (LogonException e) {

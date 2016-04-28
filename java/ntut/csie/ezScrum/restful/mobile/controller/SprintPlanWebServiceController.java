@@ -1,6 +1,5 @@
 package ntut.csie.ezScrum.restful.mobile.controller;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.ws.rs.DELETE;
@@ -13,12 +12,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONException;
+
 import ntut.csie.ezScrum.restful.mobile.service.SprintPlanWebService;
 import ntut.csie.ezScrum.restful.mobile.support.InformationDecoder;
 import ntut.csie.ezScrum.web.dataObject.AccountObject;
 import ntut.csie.jcis.account.core.LogonException;
-
-import org.codehaus.jettison.json.JSONException;
 
 @Path("{projectName}/sprint/")
 public class SprintPlanWebServiceController {
@@ -55,12 +54,6 @@ public class SprintPlanWebServiceController {
 			System.out.println("class: SprintWebServiceController, "
 					+ "method: createSprint, " + "exception: " + e.toString());
 			e.printStackTrace();
-		} catch (IOException e) {
-			responseString = "IOException";
-			System.out.println("class: SprintWebServiceController, "
-					+ "method: createSprint, " + "api:InformationDecoder, "
-					+ "exception: " + e.toString());
-			e.printStackTrace();
 		}
 		return responseString;
 	}
@@ -96,12 +89,6 @@ public class SprintPlanWebServiceController {
 			System.out.println("class: SprintWebServiceController, "
 					+ "method: deleteSprint, " + "exception: " + e.toString());
 			e.printStackTrace();
-		} catch (IOException e) {
-			responseString = "IOException";
-			System.out.println("class: SprintWebServiceController, "
-					+ "method: deleteSprint, " + "api:InformationDecoder, "
-					+ "exception: " + e.toString());
-			e.printStackTrace();
 		}
 		return responseString;
 	}
@@ -136,12 +123,6 @@ public class SprintPlanWebServiceController {
 			System.out.println("class: SprintWebServiceController, "
 					+ "method: updateSprint, " + "exception: " + e.toString());
 			e.printStackTrace();
-		} catch (IOException e) {
-			responseString += "IOException";
-			System.out.println("class: SprintWebServiceController, "
-					+ "method: updateSprint, " + "api:InformationDecoder, "
-					+ "exception: " + e.toString());
-			e.printStackTrace();
 		}
 		return responseString;
 	}
@@ -175,12 +156,6 @@ public class SprintPlanWebServiceController {
 			System.out.println("class: SprintWebServiceController, "
 					+ "method: getAllSprints, " + "exception: " + e.toString());
 			e.printStackTrace();
-		} catch (IOException e) {
-			jsonString += "IOException";
-			System.out.println("class: SprintWebServiceController, "
-					+ "method: getAllSprints, " + "api:InformationDecoder, "
-					+ "exception: " + e.toString());
-			e.printStackTrace();
 		}
 		return jsonString;
 	}
@@ -208,12 +183,6 @@ public class SprintPlanWebServiceController {
 			userObject.setPassword(decoder.getDecodePwd());
 			mSprintPlanWebService = new SprintPlanWebService(userObject, decoder.getDecodeProjectName());
 			sprintJson = mSprintPlanWebService.getSprintWithStories(sprintId);
-		} catch (IOException e) {
-			System.out.println("class: SprintWebServiceController, "
-			        + "method: getSprintWithStories, "
-			        + "api:InformationDecoder, " + "exception: "
-			        + e.toString());
-			e.printStackTrace();
 		} catch (LogonException e) {
 			System.out.println("class: SprintWebServiceController, "
 					+ "method: getSprintWithStories, " + "exception: "

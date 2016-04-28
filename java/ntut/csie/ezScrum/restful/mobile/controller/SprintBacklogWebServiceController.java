@@ -1,7 +1,5 @@
 package ntut.csie.ezScrum.restful.mobile.controller;
 
-import java.io.IOException;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -9,13 +7,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONException;
+
 import ntut.csie.ezScrum.restful.mobile.service.SprintBacklogWebService;
 import ntut.csie.ezScrum.restful.mobile.service.SprintPlanWebService;
 import ntut.csie.ezScrum.restful.mobile.support.InformationDecoder;
 import ntut.csie.ezScrum.web.dataObject.AccountObject;
 import ntut.csie.jcis.account.core.LogonException;
-
-import org.codehaus.jettison.json.JSONException;
 
 @Path("{projectName}/sprint-backlog/")
 public class SprintBacklogWebServiceController {
@@ -44,10 +42,6 @@ public class SprintBacklogWebServiceController {
 			mSprintPlanWebService = new SprintPlanWebService(user,
 					decoder.getDecodeProjectName());
 			jsonString = mSprintPlanWebService.getRESTFulResponseString();
-		} catch (IOException e) {
-			System.out.println("class: InformationDecoder, "
-					+ "method: decode, " + "exception: " + e.toString());
-			e.printStackTrace();
 		} catch (LogonException e) {
 			System.out.println("class: SprintPlanWebService, "
 					+ "method: SprintPlanWebService, " + "exception: "
@@ -94,10 +88,6 @@ public class SprintBacklogWebServiceController {
 
 			jsonString = mSprintBacklogWebService.getSprintBacklogJsonString();
 
-		} catch (IOException e) {
-			System.out.println("class: InformationDecoder, "
-					+ "method: decode, " + "exception: " + e.toString());
-			e.printStackTrace();
 		} catch (LogonException e) {
 			System.out.println("class: SprintPlanWebService, "
 					+ "method: SprintPlanWebService, " + "exception: "
@@ -178,9 +168,6 @@ public class SprintBacklogWebServiceController {
 						decoder.getDecodeProjectName(), iteration);
 			}
 			storiesIdJsonString = mSprintBacklogWebService.getStoriesIdJsonStringInSprint();
-		} catch (IOException e) {
-			System.out.println("class: InformationDecoder, "
-					+ "method: decode, " + "exception: " + e.toString());
 		} catch (LogonException e) {
 			System.out.println("class: SprintBacklogWebServiceController, "
 					+ "method: getStoriesId, " + "exception: "
@@ -220,11 +207,6 @@ public class SprintBacklogWebServiceController {
 					decoder.getDecodeProjectName(), sprintId);
 			tasksIdJsonString = mSprintBacklogWebService
 					.getTasksIdJsonStringInStory(storyId);
-		} catch (IOException e) {
-			System.out
-					.println("Class:SprintBacklogWebServiceController.java, method:getTasksId, exception:IOException, "
-							+ e.toString());
-			e.printStackTrace();
 		} catch (LogonException e) {
 			System.out
 					.println("Class:SprintBacklogWebServiceController.java, method:getTasksId, exception:LogonException, "
@@ -270,11 +252,6 @@ public class SprintBacklogWebServiceController {
 					decoder.getDecodeProjectName(), sprintId);
 			taskHistoryJsonString = mSprintBacklogWebService
 					.getTaskHsitoryJsonString(taskId);
-		} catch (IOException e) {
-			System.out
-					.println("Class:SprintBacklogWebServiceController.java, method:getTaskHistory, exception:IOException, "
-							+ e.toString());
-			e.printStackTrace();
 		} catch (NumberFormatException e) {
 			System.out
 					.println("Class:SprintBacklogWebServiceController.java, method:getTaskHistory, exception:NumberFormatException, "
@@ -318,11 +295,6 @@ public class SprintBacklogWebServiceController {
 					decoder.getDecodeUsername(), decoder.getDecodePwd(),
 					decoder.getDecodeProjectName(), sprintId);
 			jsonString = mSprintBacklogWebService.getTaskJsonString(taskId);
-		} catch (IOException e) {
-			System.out
-					.println("Class:SprintBacklogWebServiceController.java, method:getTaskInformation, exception:IOException, "
-							+ e.toString());
-			e.printStackTrace();
 		} catch (LogonException e) {
 			System.out
 					.println("Class:SprintBacklogWebServiceController.java, method:getTaskInformation, exception:LogonException, "

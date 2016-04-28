@@ -1,7 +1,5 @@
 package ntut.csie.ezScrum.restful.mobile.controller;
 
-import java.io.IOException;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -12,11 +10,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONException;
+
 import ntut.csie.ezScrum.restful.mobile.service.ProductBacklogWebService;
 import ntut.csie.ezScrum.restful.mobile.support.InformationDecoder;
 import ntut.csie.jcis.account.core.LogonException;
-
-import org.codehaus.jettison.json.JSONException;
 
 @Path("{projectName}/product-backlog/")
 public class ProductBacklogWebServiceController {
@@ -44,11 +42,6 @@ public class ProductBacklogWebServiceController {
 			
 	        pbws.createStory(storyJson);
 	        storyCreateJsonString = pbws.getRESTFulResponseString();
-		} catch (IOException e) {
-			System.out.println("class: ProductBacklogWebServiceController, " +
-								"method: createStory, " +
-								"exception: "+ e.toString());
-			e.printStackTrace();
 		} catch (LogonException e) {
 			System.out.println("class: ProductBacklogWebServiceController, " +
 								"method: createStory, " +
@@ -88,11 +81,6 @@ public class ProductBacklogWebServiceController {
 								"method: getProductBacklogList, " +
 								"exception: "+ e.toString());
 			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("class: ProductBacklogWebServiceController, " +
-								"method: decode, " +
-								"exception: "+ e.toString());
-			e.printStackTrace();
 		}
 		return jsonString;
 	}
@@ -119,11 +107,6 @@ public class ProductBacklogWebServiceController {
 			
 	        pbws.updateStory(storyJson);
 	        storyUpdateJsonString = pbws.getRESTFulResponseString();
-		} catch (IOException e) {
-			System.out.println("class: ProductBacklogWebServiceController, " +
-								"method: updateStory, " +
-								"exception: "+ e.toString());
-			e.printStackTrace();
 		} catch (LogonException e) {
 			System.out.println("class: ProductBacklogWebServiceController, " +
 								"method: updateStory, " +
@@ -160,13 +143,6 @@ public class ProductBacklogWebServiceController {
 								"method: deleteStory, " +
 								"exception: "+ e.toString());
 			e.printStackTrace();
-		} catch (IOException e) {
-			responseString += "IOException";
-			System.out.println("class: ProductBacklogWebServiceController, " +
-								"method: deleteStory, " +
-								"api:InformationDecoder, " +
-								"exception: "+ e.toString());
-			e.printStackTrace();
 		}
 		return responseString;
 	}
@@ -197,11 +173,6 @@ public class ProductBacklogWebServiceController {
 								"method: getProductBacklogList, " +
 								"exception: "+ e.toString());
 			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("class: ProductBacklogWebServiceController, " +
-								"method: decode, " +
-								"exception: "+ e.toString());
-			e.printStackTrace();
 		}
 		return jsonString;
 	}
@@ -225,11 +196,6 @@ public class ProductBacklogWebServiceController {
 													 informationDecoder.getDecodeProjectName());
 			pbws.getAllTags();
 			jsonString = pbws.getRESTFulResponseString();
-		} catch (IOException e) {
-			System.out.println("class: ProductBacklogWebServiceController, " +
-								"method: decode, " +
-								"exception: "+ e.toString());
-			e.printStackTrace();
 		} catch (LogonException e) {
 			System.out.println("class: ProductBacklogWebServiceController, " +
 								"method: getTagList, " +
@@ -259,11 +225,6 @@ public class ProductBacklogWebServiceController {
 													 informationDecoder.getDecodeProjectName());
 			pbws.getStoryHistory(storyId);
 			storyHistoryJsonString = pbws.getRESTFulResponseString();
-		} catch (IOException e) {
-			System.out.println("class: ProductBacklogWebServiceController, " +
-								"method: decode, " +
-								"exception: "+ e.toString());
-			e.printStackTrace();
 		} catch (LogonException e) {
 			System.out.println("class: ProductBacklogWebServiceController, " +
 								"method: getStoryHistory, " +

@@ -1,6 +1,5 @@
 package ntut.csie.ezScrum.restful.mobile.controller;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.ws.rs.GET;
@@ -13,6 +12,8 @@ import javax.ws.rs.core.Response;
 
 import org.codehaus.jettison.json.JSONException;
 
+import ntut.csie.ezScrum.restful.dataMigration.jsonEnum.ResponseJSONEnum;
+import ntut.csie.ezScrum.restful.dataMigration.support.ResponseFactory;
 import ntut.csie.ezScrum.restful.mobile.service.ReleasePlanWebService;
 import ntut.csie.ezScrum.restful.mobile.support.InformationDecoder;
 import ntut.csie.jcis.account.core.LogonException;
@@ -43,11 +44,6 @@ public class ReleasePlanWebServiceController {
 								"exception: " + e.toString());
 			e.printStackTrace();
 			Response.status(410).entity("Parameter error.").build();
-		} catch (IOException e) {
-			System.out.println("class: ReleasePlanWebServiceController, " +
-								"method: decode, " +
-								"exception: " + e.toString());
-			e.printStackTrace();
 		} catch (SQLException e) {
 			System.out.println("class: ReleasePlanWebServiceController, " +
 								"method: getReleasePlan, " +
@@ -64,32 +60,23 @@ public class ReleasePlanWebServiceController {
 	@GET
 	@Path("all")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getAllReleasePlan(@QueryParam("username") String username,
-								    @QueryParam("password") String password,
-								    @PathParam("projectName") String projectName) {
-		String jsonString = "";
+	public Response getAllReleasePlan(@QueryParam("username") String username,
+		    @QueryParam("password") String password,
+		    @PathParam("projectName") String projectName) {
+		String content = "";
 		try {
 			InformationDecoder decodeAccount = new InformationDecoder();
 			decodeAccount.decode(username, password, projectName);
 			mReleasePlanWebService = new ReleasePlanWebService(decodeAccount.getDecodeUsername(), decodeAccount.getDecodePwd(), projectName);
-			jsonString = mReleasePlanWebService.getAllReleasePlan();
+			content = mReleasePlanWebService.getAllReleasePlan();
 		} catch (LogonException e) {
-			System.out.println("class: ReleasePlanWebServiceController, " +
-								"method: getAllReleasePlan, " +
-								"exception: " + e.toString());
 			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("class: ReleasePlanWebServiceController, " +
-								"method: getAllReleasePlan, " +
-								"exception: " + e.toString());
-			e.printStackTrace();
+			return ResponseFactory.getResponse(Response.Status.FORBIDDEN, ResponseJSONEnum.ERROR_FORBIDDEN_MESSAGE, ResponseJSONEnum.NO_CONTENT);
 		} catch (JSONException e) {
-			System.out.println("class: ReleasePlanWebServiceController, " +
-					"method: getAllReleasePlan, " +
-					"exception: " + e.toString());
 			e.printStackTrace();
+			return ResponseFactory.getResponse(Response.Status.INTERNAL_SERVER_ERROR, ResponseJSONEnum.ERROR_INTERNAL_SERVER_ERROR_MESSAGE, ResponseJSONEnum.NO_CONTENT);
 		}
-		return jsonString;
+		return ResponseFactory.getResponse(Response.Status.OK, ResponseJSONEnum.SUCCESS_MESSAGE, content);
 	}
 	
 	/**
@@ -109,11 +96,6 @@ public class ReleasePlanWebServiceController {
 			mReleasePlanWebService = new ReleasePlanWebService(decodeAccount.getDecodeUsername(), decodeAccount.getDecodePwd(), projectName);
 			jsonString = mReleasePlanWebService.getAllReleasePlanWithAllItem();
 		} catch (LogonException e) {
-			System.out.println("class: ReleasePlanWebServiceController, " +
-								"method: getAllReleasePlan, " +
-								"exception: " + e.toString());
-			e.printStackTrace();
-		} catch (IOException e) {
 			System.out.println("class: ReleasePlanWebServiceController, " +
 								"method: getAllReleasePlan, " +
 								"exception: " + e.toString());

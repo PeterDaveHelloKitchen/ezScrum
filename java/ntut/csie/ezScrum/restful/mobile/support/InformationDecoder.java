@@ -19,7 +19,7 @@ public class InformationDecoder {
 	}
 
 	public void decode(String encodeUsername, String encodePassword,
-			String encodeProjectName) throws IOException {
+			String encodeProjectName) {
 		byte[] userName = Base64.decodeBase64(encodeUsername.getBytes());
 		byte[] pwd = Base64.decodeBase64(encodePassword.getBytes());
 		setDecodeUsername(new String(userName));
